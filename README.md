@@ -12,3 +12,6 @@ Projeto de jogo beat'em up a ser desenvolvido usando a linguagem C# e o framewor
 * [XNA Tutorials](http://rbwhitaker.wikidot.com/xna-tutorials)*
 
 \*Note que a maioria dos tutoriais sobre XNA também valem para o MonoGame, pois ele é uma versão opensource do XNA.
+
+# Branch Tutorial/EyesOfTheDragon
+Aqui ficarão as classes que eu criar em virtude de estar seguindo o tutorial [Eyes of The Dragon](http://gameprogrammingadventures.org/eyes-of-the-dragon-tutorial-series/)
