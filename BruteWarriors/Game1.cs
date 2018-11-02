@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGameLibrary;
+
 
 namespace BruteWarriors
 {
@@ -12,13 +12,14 @@ namespace BruteWarriors
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Texture2D fundo;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            Components.Add(new InputHandler(this));
+
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace BruteWarriors
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            fundo = Content.Load<Texture2D>("Graficos/Background/lava");
 
             // TODO: use this.Content to load your game content here
         }
@@ -80,7 +82,17 @@ namespace BruteWarriors
 
             // TODO: Add your drawing code here
 
+            // Desenha o Fundo:
+            spriteBatch.Begin(); // Começamos a desenhar usando o spriteBatch.
+            spriteBatch.Draw(fundo, new Rectangle(0, 0, 800, 480), Color.White);
+            spriteBatch.End();  // Terminamos de Desenhar  
+
+
+
+
+
             base.Draw(gameTime);
+
         }
     }
 }
