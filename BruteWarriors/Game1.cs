@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using BruteWarriors.Componentes;
 
 namespace BruteWarriors
 {
@@ -12,7 +12,7 @@ namespace BruteWarriors
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Texture2D fundo;
+        private IBackground _fundo;
 
         public Game1()
         {
@@ -43,9 +43,17 @@ namespace BruteWarriors
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            fundo = Content.Load<Texture2D>("Graficos/Background/lava");
+
 
             // TODO: use this.Content to load your game content here
+            Texture2D fundo = Content.Load<Texture2D>("Graficos/Background/lava");
+            Rectangle areaDaTela = GraphicsDevice.Viewport.Bounds;
+            _fundo = new BruteWarriors.Componentes.ImagemEstatica(fundo, areaDaTela);
+
+            // Lidando com Resize
+            Window.AllowUserResizing = true;
+            Window.ClientSizeChanged += OnResize;
+
         }
 
         /// <summary>
@@ -82,17 +90,31 @@ namespace BruteWarriors
 
             // TODO: Add your drawing code here
 
-            // Desenha o Fundo:
-            spriteBatch.Begin(); // Começamos a desenhar usando o spriteBatch.
-            spriteBatch.Draw(fundo, new Rectangle(0, 0, 800, 480), Color.White);
-            spriteBatch.End();  // Terminamos de Desenhar  
+            // Começamos a desenhar.
+            spriteBatch.Begin();
+
+            // Desenhamos o Fundo:
+            _fundo.Draw(gameTime, spriteBatch);
 
 
+            // Terminamos de Desenhar
+            spriteBatch.End(); 
 
-
-
+            // Chamamos Game.Draw para desenhar o que mais for necessário.
             base.Draw(gameTime);
 
+        }
+
+        public void OnResize(object sender, System.EventArgs e)
+        {
+           // Se o fundo for redirmensionavel, fazemos o Resize.
+           IResizable fundoRedimencionavel = _fundo as IResizable;
+           if(fundoRedimencionavel != null)
+            {
+                int novaAltura = GraphicsDevice.Viewport.Height;
+                int novaLargura = GraphicsDevice.Viewport.Width;
+                fundoRedimencionavel.OnResize(novaAltura, novaLargura);
+            }
         }
     }
 }
