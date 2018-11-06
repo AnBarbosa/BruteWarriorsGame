@@ -46,9 +46,11 @@ namespace BruteWarriors
 
 
             // TODO: use this.Content to load your game content here
-            Texture2D fundo = Content.Load<Texture2D>("Graficos/Background/lava");
+            //Texture2D fundo = Content.Load<Texture2D>("Graficos/Background/lava");
+            Texture2D fundoUI = Content.Load<Texture2D>("Graficos/UI/character_selection");
             Rectangle areaDaTela = GraphicsDevice.Viewport.Bounds;
-            _fundo = new BruteWarriors.Componentes.ImagemEstatica(fundo, areaDaTela);
+            _fundo = new BruteWarriors.Componentes.ImagemEstaticaRedimensionavel(fundoUI, areaDaTela);
+            //_fundo = new BruteWarriors.Componentes.ImagemEstatica(fundoUI, areaDaTela);
 
             // Lidando com Resize
             Window.AllowUserResizing = true;

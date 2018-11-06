@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Esse arquivo contem as classes ImagemEstatica e ImagemEstaticaRedimensionavel
 namespace BruteWarriors.Componentes 
 {
     public class ImagemEstatica : IBackground
